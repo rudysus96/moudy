@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOUDY - Your Sound, Your Vibe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .glass-button {
+            transition: all 0.3s ease;
+        }
+        
+        .glass-button:hover {
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.4), 0 0 60px rgba(59, 130, 246, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .modal-glass {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        
+        .modal-content {
+            animation: fadeInUp 0.4s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .title-glow {
+            text-shadow: 0 0 25px rgba(59, 130, 246, 0.6), 
+                         0 0 50px rgba(59, 130, 246, 0.4),
+                         0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #5865F2 0%, #4752C4 100%);
+            transition: all 0.3s ease;
+            box-shadow: 0 0 30px rgba(88, 101, 242, 0.5), 0 0 60px rgba(88, 101, 242, 0.3);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.03);
+            }
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #4752C4 0%, #3B45B8 100%);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 0 50px rgba(88, 101, 242, 0.9), 
+                        0 0 100px rgba(88, 101, 242, 0.7), 
+                        0 0 150px rgba(88, 101, 242, 0.4),
+                        0 10px 30px rgba(0, 0, 0, 0.4);
+            animation: none;
+        }
+        
+        .btn-primary:active {
+            transform: translateY(-1px) scale(1.02);
+        }
+        
+        footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            z-index: 10;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+        
+        .footer-links a {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 8px;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .footer-links a:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+            color: rgba(255, 255, 255, 1);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2), 0 0 30px rgba(59, 130, 246, 0.15);
+            transform: translateY(-1px);
+        }
+        
+        .footer-credit {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        @media (max-width: 640px) {
+            footer {
+                flex-direction: column;
+                gap: 12px;
+                padding: 20px;
+            }
+            
+            .footer-links {
+                gap: 16px;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen relative overflow-x-hidden">
+    <!-- Background Image -->
+    <div class="fixed inset-0 bg-cover bg-center bg-fixed no-repeat" style="background-image: url('assets/background.png');"></div>
+    
+    <!-- Dark Overlay -->
+    <div class="fixed inset-0 bg-black/60 z-0"></div>
+    
+    <!-- Main Content -->
+    <div class="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 py-12 pb-24">
+        <!-- Hero Container - Perfectly Centered -->
+        <div class="hero-container text-center">
+            <!-- Main Title -->
+            <h1 class="text-7xl md:text-8xl lg:text-9xl font-black text-white mb-6 title-glow tracking-tight">
+                MOUDY
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="text-xl md:text-2xl lg:text-3xl text-white/70 font-light tracking-widest uppercase mb-16">
+                Your Sound, Your Vibe
+            </p>
+            
+            <!-- Primary CTA Button -->
+            <a 
+                href="https://discord.com/oauth2/authorize?client_id=1450941135487893738&permissions=8&integration_type=0&scope=bot+applications.commands"
+                target="_blank"
+                class="btn-primary text-white font-bold py-6 px-12 rounded-xl text-xl md:text-2xl min-w-[280px] text-center inline-block"
+            >
+                ADD TO DISCORD
+            </a>
+        </div>
+    </div>
+    
+    <!-- Privacy Policy Modal -->
+    <div id="privacyModal" class="hidden fixed inset-0 z-50 flex items-center justify-center px-4">
+        <div class="modal-glass fixed inset-0 bg-black/80" onclick="closeModal('privacy')"></div>
+        <div class="modal-content relative modal-glass bg-white/5 border border-white/20 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[80vh] overflow-y-auto p-8 md:p-12">
+            <button 
+                onclick="closeModal('privacy')"
+                class="absolute top-6 right-6 text-white/70 hover:text-white text-3xl font-light leading-none transition-colors"
+                aria-label="Close"
+            >
+                ×
+            </button>
+            <div class="prose prose-invert max-w-none text-white/90">
+                <h1 class="text-4xl font-bold text-white mb-4">MOUDY Music Bot - Privacy Policy</h1>
+                
+                <p><strong>Effective Date:</strong> January 2025</p>
+                <p>MOUDY Music Bot ("The Service") is committed to protecting user privacy. This policy outlines our data handling practices in compliance with Discord Developer Policy.</p>
+                
+                <h3 class="text-2xl font-semibold text-white mt-8 mb-4">1. Data Collection</h3>
+                <p>We adhere to a strict data-minimization principle. We collect only the following transient data necessary for functionality:</p>
+                <ul class="list-disc list-inside ml-4 mt-2 space-y-2">
+                    <li><strong>User IDs:</strong> To identify who requested a specific song or command.</li>
+                    <li><strong>Voice Channel IDs:</strong> To allow the bot to connect to the correct audio stream.</li>
+                    <li><strong>Guild (Server) IDs:</strong> To store server-specific configurations (e.g., volume settings).</li>
+                </ul>
+                
+                <h3 class="text-2xl font-semibold text-white mt-8 mb-4">2. Data Retention & Storage</h3>
+                <p>The Service operates primarily in real-time. Operational data is stored in <strong>volatile memory (RAM)</strong> and is cleared when the bot session ends or leaves the voice channel. We do not maintain long-term databases of user message history, listening habits, or personal conversations.</p>
+                
+                <h3 class="text-2xl font-semibold text-white mt-8 mb-4">3. Audio Privacy</h3>
+                <p>MOUDY does <strong>NOT</strong> record, store, or analyze user voice data. The bot only processes audio streams from external providers (YouTube/Spotify) to play music to you. We do not listen to your conversations.</p>
+                
+                <h3 class="text-2xl font-semibold text-white mt-8 mb-4">4. Third-Party Services</h3>
+                <p>MOUDY utilizes official APIs from third-party platforms. By using The Service, you acknowledge that data related to search queries interacts with these platforms, subject to their respective privacy policies.</p>
+                
+                <h3 class="text-2xl font-semibold text-white mt-8 mb-4">5. Contact</h3>
+                <p>For any privacy-related inquiries, please contact the bot owner directly via the Discord platform support server.</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Terms of Service Modal -->
+    <div id="termsModal" class="hidden fixed inset-0 z-50 flex items-center justify-center px-4">
+        <div class="modal-glass fixed inset-0 bg-black/80" onclick="closeModal('terms')"></div>
+        <div class="modal-content relative modal-glass bg-white/5 border border-white/20 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[80vh] overflow-y-auto p-8 md:p-12">
+            <button 
+                onclick="closeModal('terms')"
+                class="absolute top-6 right-6 text-white/70 hover:text-white text-3xl font-light leading-none transition-colors"
+                aria-label="Close"
+            >
+                ×
+            </button>
+            <div class="prose prose-invert max-w-none text-white/90">
+                <h1 class="text-4xl font-bold text-white mb-4">MOUDY Music Bot - Terms of Service</h1>
+                
+                <p>By inviting or using MOUDY ("The Service") in your Discord server, you agree to these Terms.</p>
+                
+                <h3 class="text-2xl font-semibold text-white mt-8 mb-4">1. License to Use</h3>
+                <p>We grant you a limited, non-exclusive, revocable license to use The Service for its intended purpose: playing audio content within Discord voice channels.</p>
+                
+                <h3 class="text-2xl font-semibold text-white mt-8 mb-4">2. Prohibited Conduct</h3>
+                <p>You agree NOT to:</p>
+                <ul class="list-disc list-inside ml-4 mt-2 space-y-2">
+                    <li>Use The Service to stream illegal, hate-speech, or copyright-infringing content.</li>
+                    <li>Attempt to stress-test, DDoS, or disrupt the bot infrastructure.</li>
+                    <li>Spam commands in a way that degrades service performance for others.</li>
+                    <li>Reverse-engineer or modify the bot source code without permission.</li>
+                </ul>
+                
+                <h3 class="text-2xl font-semibold text-white mt-8 mb-4">3. Disclaimer of Warranties</h3>
+                <p>The Service is provided on an "AS IS" and "AS AVAILABLE" basis. We disclaim all warranties regarding reliability, uptime, or accuracy of audio search results. We are not liable for any service interruptions caused by Discord API outages.</p>
+                
+                <h3 class="text-2xl font-semibold text-white mt-8 mb-4">4. Termination</h3>
+                <p>We reserve the right to permanently blacklist any server or user found to be in violation of these Terms, without prior notice.</p>
+                
+                <h3 class="text-2xl font-semibold text-white mt-8 mb-4">5. Modifications</h3>
+                <p>We may revise these Terms at any time. Continued use of The Service after changes constitutes acceptance of the new Terms.</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function openModal(type) {
+            const modal = document.getElementById(type + 'Modal');
+            if (modal) {
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        
+        function closeModal(type) {
+            const modal = document.getElementById(type + 'Modal');
+            if (modal) {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        }
+        
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal('terms');
+                closeModal('privacy');
+            }
+        });
+    </script>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="#" onclick="event.preventDefault(); openModal('privacy');">Privacy Policy</a>
+            <a href="#" onclick="event.preventDefault(); openModal('terms');">Terms of Service</a>
+        </div>
+        <div class="footer-credit">
+            <span>dev by rudysus96</span>
+        </div>
+    </footer>
+</body>
+</html>
+
