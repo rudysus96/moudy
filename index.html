@@ -219,19 +219,34 @@
             }
         }
         
-        @media (max-width: 640px) {
-            .footer-links {
-                position: absolute;
-                bottom: auto;
-                top: 10px;
-                left: 10px;
+        @media (max-width: 768px) {
+            footer {
+                display: flex;
                 flex-direction: column;
-                gap: 8px;
+                align-items: center;
+                justify-content: center;
+                gap: 20px;
+                padding-bottom: 40px;
+                min-height: auto;
+            }
+            
+            .footer-links {
+                position: relative;
+                bottom: auto;
+                left: auto;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                gap: 12px;
+                order: 1;
             }
             
             .footer-new {
-                bottom: 10px;
-                gap: 3px;
+                position: relative;
+                width: 100%;
+                order: 2;
+                gap: 6px;
+                padding-bottom: 0;
             }
             
             .footer-new p,
